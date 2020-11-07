@@ -45,6 +45,9 @@ async function processCommand(words, event) {
             case "timelapse":
                 getTimelapse(event);
                 break;
+            case "stream":
+                getStream(event);
+                break;
             default:
                 event.respond("Incorrect Input, please try again or use help");
                 break;
@@ -94,6 +97,17 @@ async function getTimelapse(event) {
 
         information += "```";
         event.respond(information);
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+}
+
+async function getStream(event) {
+    axios.get("http://"+ keys.APIhost + "/webcam/?action=stream?apikey=" + keys.API)
+    .then(function (response) {
+        console.log(response);
     })
     .catch(function (error) {
         // handle error
