@@ -35,7 +35,13 @@ async function processCommand(words, event) {
         event.respond("Incorrect Input, please try again or use help");
     }
     else if (words[2] == null && words[1].toLowerCase() == "help") {
-        event.respond("");
+        event.respond("```\n" + 
+        "How to use this glorious bot?\n" +
+        "First preface all requests with @octobot...\n" + 
+        "Status    -> Gets all of the current status information for the current job\n" +
+        "Timelapse -> Gets a list of all of the saved timelapses\n" + 
+        "Stream    -> Gets the url for the live stream of the printer in action\n" +  
+        "```");
     }
     else {
         switch (words[1].toLowerCase()) {
@@ -106,14 +112,6 @@ async function getTimelapse(event) {
 
 async function getStream(event) {
     event.respond("http://"+ keys.APIhost + "/webcam/?action=stream");
-    axios.get("http://"+ keys.APIhost + "/webcam/?action=stream?apikey=" + keys.API)
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
 }
 
 
