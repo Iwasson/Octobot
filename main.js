@@ -105,6 +105,7 @@ async function getTimelapse(event) {
 }
 
 async function getStream(event) {
+    event.respond("http://"+ keys.APIhost + "/webcam/?action=stream");
     axios.get("http://"+ keys.APIhost + "/webcam/?action=stream?apikey=" + keys.API)
     .then(function (response) {
         console.log(response);
